@@ -75,28 +75,25 @@ class BinarySearchTree {
     }
     // throw new NotImplementedError("Not implemented");
     // remove line with error and write your code here
-    return findNode(data, this.root)
+    return findNode(data, this.root);
   }
 
   remove(data) {
     function removeNode(data, currentNode) {
-      if (!currentNode){
+      if (!currentNode) {
         return null;
       }
       if (currentNode.data > data) {
         currentNode.left = removeNode(data, currentNode.left);
         return currentNode;
-      }
-      else if (currentNode.data < data) {
+      } else if (currentNode.data < data) {
         currentNode.right = removeNode(data, currentNode.right);
         return currentNode;
-      }
-      else if (currentNode.data == data){
+      } else if (currentNode.data == data) {
         // нашли смотрим потомков
         if (!currentNode.left & !currentNode.right){
           currentNode.data = null;
         }
-
       }
     }
     // remove line with error and write your code here
