@@ -44,19 +44,18 @@ class BinarySearchTree {
   }
 
   has(data) {
-    function findNode(data, currentNode) {
+    function hasNode(data, currentNode) {
       if (!currentNode) {
         return false;
-      }
-      if (currentNode.data == data) {
+      } else if (currentNode.data == data) {
         return true;
-      } else if (currentNode.data > data) {
-        findNode(data, currentNode.left);
+      } else if (data < currentNode.data) {
+        return hasNode(data, currentNode.left);
       } else {
-        findNode(data, currentNode.right);
+        return hasNode(data, currentNode.right);
       }
     }
-    return findNode(data, this.treeRoot);
+    return hasNode(data, this.treeRoot);
     // remove line with error and write your code here
   }
 
@@ -64,14 +63,12 @@ class BinarySearchTree {
     function findNode(data, currentNode) {
       if (!currentNode) {
         return null;
-      }
-      if (currentNode.data == data) {
+      } else if (currentNode.data == data) {
         return currentNode;
-      }
-      if (currentNode.data > data) {
-        findNode(data, currentNode.left);
+      } else if (data < currentNode.data) {
+        return findNode(data, currentNode.left);
       } else {
-        findNode(data, currentNode.right);
+        return findNode(data, currentNode.right);
       }
     }
     // throw new NotImplementedError("Not implemented");
@@ -112,6 +109,12 @@ class BinarySearchTree {
 }
 const tree = new BinarySearchTree();
 console.log(tree.add(5));
+console.log(tree.add(6));
+console.log(tree.add(4));
+console.log(tree.add(8));
+console.log(tree.has(6));
+console.log(tree.root());
+console.log(tree.find(6));
 module.exports = {
   BinarySearchTree,
 };
