@@ -8,19 +8,19 @@ const { Node } = require("../extensions/list-tree.js");
  */
 class BinarySearchTree {
   constructor() {
-    this.root = null;
+    this.treeRoot = null;
   }
 
   root() {
-    return this.root;
+    return this.treeRoot;
     // remove line with error and write your code here
   }
 
   add(data) {
-    if (!this.root) {
-      this.root = new Node(data);
+    if (!this.treeRoot) {
+      this.treeRoot = new Node(data);
     } else {
-      addNewNode(data, this.root);
+      addNewNode(data, this.treeRoot);
     }
     function addNewNode(newNodeData, currentNode) {
       // 1 если дерево пустое
@@ -40,6 +40,7 @@ class BinarySearchTree {
       return currentNode;
     }
     // remove line with error and write your code here
+    return true;
   }
 
   has(data) {
@@ -55,7 +56,7 @@ class BinarySearchTree {
         findNode(data, currentNode.right);
       }
     }
-    return findNode(data, this.root);
+    return findNode(data, this.treeRoot);
     // remove line with error and write your code here
   }
 
@@ -75,7 +76,7 @@ class BinarySearchTree {
     }
     // throw new NotImplementedError("Not implemented");
     // remove line with error and write your code here
-    return findNode(data, this.root);
+    return findNode(data, this.treeRoot);
   }
 
   remove(data) {
@@ -91,7 +92,7 @@ class BinarySearchTree {
         return currentNode;
       } else if (currentNode.data == data) {
         // нашли смотрим потомков
-        if (!currentNode.left & !currentNode.right){
+        if (!currentNode.left & !currentNode.right) {
           currentNode.data = null;
         }
       }
