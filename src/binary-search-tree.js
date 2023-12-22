@@ -81,7 +81,7 @@ class BinarySearchTree {
       if (!currentNode) {
         return null;
       }
-      if (currentNode.data > data) {
+      if (data < currentNode.data) {
         currentNode.left = removeNode(data, currentNode.left);
         return currentNode;
       } else if (currentNode.data < data) {
@@ -89,21 +89,44 @@ class BinarySearchTree {
         return currentNode;
       } else if (currentNode.data == data) {
         // нашли смотрим потомков
-        if (!currentNode.left & !currentNode.right) {
-          currentNode.data = null;
-        }
+        return currentNode.left, currentNode.right;
       }
     }
     // remove line with error and write your code here
   }
 
   min() {
-    throw new NotImplementedError("Not implemented");
+    let minNode = this.treeRoot.data;
+    let currentNode = this.treeRoot;
+    while (currentNode) {
+      if (minNode > currentNode.data) {
+        minNode = currentNode.data;
+      }
+      if (!currentNode.left) {
+        currentNode = currentNode.right;
+      } else {
+        currentNode = currentNode.left;
+      } 
+    }
+    return minNode;
+
     // remove line with error and write your code here
   }
 
   max() {
-    throw new NotImplementedError("Not implemented");
+    let maxNode = this.treeRoot.data;
+    let currentNode = this.treeRoot;
+    while (currentNode) {
+      if (maxNode < currentNode.data) {
+        maxNode = currentNode.data;
+      }
+      if (!currentNode.right) {
+        currentNode = currentNode.left;
+      } else {
+        currentNode = currentNode.right;
+      } 
+    }
+    return maxNode;
     // remove line with error and write your code here
   }
 }
