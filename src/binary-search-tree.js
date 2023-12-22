@@ -77,6 +77,7 @@ class BinarySearchTree {
   }
 
   remove(data) {
+    this.treeRoot = removeNode(data, this.treeRoot);
     function removeNode(data, currentNode) {
       if (!currentNode) {
         return null;
@@ -84,12 +85,30 @@ class BinarySearchTree {
       if (data < currentNode.data) {
         currentNode.left = removeNode(data, currentNode.left);
         return currentNode;
-      } else if (currentNode.data < data) {
+      } else if (data > currentNode.data) {
         currentNode.right = removeNode(data, currentNode.right);
         return currentNode;
       } else if (currentNode.data == data) {
         // нашли смотрим потомков
-        return currentNode.left, currentNode.right;
+        if (!currentNode.left & !currentNode.right){
+          return null;
+        }
+        if (!currentNode.left) {
+          currentNode = currentNode.right;
+          return currentNode;
+        }
+        if (!currentNode.right) {
+          currentNode = currentNode.left;
+          return currentNode;
+        }
+        // если оба есть ищем мин справа
+        let minNode = currentNode.right;
+        while (minNode.left) {
+          minNode = minNode.left;
+        };
+        currentNode.data = minNode.data;
+        currentNode.right = removeNode(minNode.data, currentNode.right)
+        return currentNode;
       }
     }
     // remove line with error and write your code here
